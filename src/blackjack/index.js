@@ -5,8 +5,8 @@ import { crearDeck } from "./usecases/crear-deck";
 
       
   let deck = [];
-  const tipos = ['C', 'D', 'H', 'S'],
-        especiales = ['A', 'J', 'Q', 'K'];
+  const tipos = ['C', 'D', 'H', 'S'];   
+  const especiales = ['A', 'J', 'Q', 'K'];
 
   let puntosJugadores = [];
 
@@ -20,11 +20,11 @@ import { crearDeck } from "./usecases/crear-deck";
         puntosHTML = document.querySelectorAll('small');
 
 
-crearDeck( tipos, especiales );
+
 
   // esta funcion inicializa el juego
   const inicializarJuego = ( numJugadores = 2) => {
-      deck = crearDeck();
+      deck = crearDeck( tipos, especiales );
 
       puntosJugadores = [];
 
