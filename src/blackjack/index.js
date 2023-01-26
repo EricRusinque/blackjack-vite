@@ -1,5 +1,6 @@
 import _ from 'underscore';
-import { crearDeck } from "./usecases/crear-deck";
+import { crearDeck, perdirCarta, valorCarta } from "./usecases"
+
 
 
 
@@ -43,35 +44,8 @@ import { crearDeck } from "./usecases/crear-deck";
 
 
 
-  //Esta funcion me permite tomar una carta
 
-  const perdirCarta = () => {
 
-      if( deck.length === 0) {
-          throw 'No hay cartas en el deck'
-      }
-
-      return deck.pop()
-  }
-  // perdirCarta();
-
-  const valorCarta = ( carta ) => {
-  
-      const valor = carta.substring(0, carta.length - 1);
-      return ( isNaN( valor ) ) ? 
-          ( valor === 'A') ? 11 : 10
-          : valor * 1
-      
-      // let puntos = 0
-
-      // if( isNaN( valor )) {
-      //     puntos = ( valor  === 'A' ) ? 11 : 10;
-      // } else {
-      //     console.log('Es un numero')
-      //     puntos = valor * 1;
-      // }
-      // console.log(puntos)
-  }
 
   // Turno 0 = primer jugador y el utlimo sera la computadora
   const acumularPuntos = ( carta, turno ) => {
@@ -119,7 +93,7 @@ import { crearDeck } from "./usecases/crear-deck";
       let puntosComputadora = 0
 
       do {
-          const carta= perdirCarta();
+          const carta= perdirCarta( deck );
           puntosComputadora = acumularPuntos(carta, puntosJugadores.length - 1);
           
          
@@ -140,7 +114,7 @@ import { crearDeck } from "./usecases/crear-deck";
 
   btnPedir.addEventListener('click', function() {
 
-      const carta= perdirCarta();
+      const carta= perdirCarta( deck );
       const puntosJugador = acumularPuntos(carta, 0);
 
       crearCarta( carta, 0);
